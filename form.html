@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="es">
+	<head>
+		<title>Formulario ejercicio 1</title>
+		<meta charset="utf-8" />
+		<link rel="shortcut icon" href="#" />
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+			crossorigin="anonymous"
+		/>
+	</head>
+
+	<body>
+		<style></style>
+		<script>
+			function sub() {
+				event.preventDefault()
+				var nombre = document.getElementById('nombre').value
+				var apellido = document.getElementById('apellido').value
+				var mail = document.getElementById('mail').value
+
+				if (nombre === '' || apellido === '' || mail === '') {
+					return alert('Falta Completar')
+				}
+				console.log('nombre ' + nombre)
+				console.log('apellido ' + apellido)
+				console.log('mail ' + mail)
+			}
+		</script>
+
+		<form method="get">
+			<div class="container">
+				<input type="text" id="nombre" class="form-control" required />
+				<input
+					type="text"
+					id="apellido"
+					class="form-control"
+					required
+				/>
+				<input type="email" id="mail" class="form-control" required />
+				<button type="submit" onClick="sub()" class="btn btn-primary">
+					Submit
+				</button>
+			</div>
+		</form>
+	</body>
+</html>
