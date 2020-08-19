@@ -1,43 +1,33 @@
 import React from 'react'
 import './navBar.css'
-
+import { Link } from 'react-router-dom'
+// VER https://reactrouter.com/web/guides/quick-start
 function NavBar() {
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light">
-			<a className="navbar-brand" href="#">
-				MARCA
-			</a>
-			<ul className="navbar-nav mr-auto">
-				<li className="nav-item">
-					<a className="nav-link" href="">
-						Inicio
-					</a>
-				</li>
-				<li className="nav-item">
-					<a className="nav-link" href="">
-						Nosotros
-					</a>
-				</li>
-				<li className="nav-item">
-					<a className="nav-link" href="">
-						Productos
-					</a>
-				</li>
-				<li className="nav-item">
-					<a className="nav-link" href="">
-						Contacto
-					</a>
-				</li>
+		<nav>
+			<Link to="/">
+				<h3>Logo</h3>
+			</Link>
+			<ul className="navList">
+				<Link to="/">
+					<li>Inicio</li>
+				</Link>
+				<Link to="/nosotros">
+					<li>Nosotros</li>
+				</Link>
+				<Link to="/productos">
+					<li>Productos</li>
+				</Link>
+				<Link to="/contacto">
+					<li>Contacto</li>
+				</Link>
+				<Link to="/carrito">
+					<li>Carrito</li>
+				</Link>
+				<Link to="/buscar">
+					<li>Buscar</li>
+				</Link>
 			</ul>
-
-			<a className="nav-link" href="">
-				Carrito
-			</a>
-
-			<form>
-				<input type="search" placeholder="Buscar"></input>
-				<button type="submit">Buscar</button>
-			</form>
 		</nav>
 	)
 }

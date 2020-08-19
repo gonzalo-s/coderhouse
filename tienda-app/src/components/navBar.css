@@ -1,3 +1,15 @@
-.navBarList {
+nav {
+	display: flex;
+	justify-content: space-around;
+	align-items: baseline;
+	min-height: 10vh;
+	background: rgb(69, 82, 87);
+	color: white;
+}
+.navList {
+	display: flex;
+	width: 50%;
+	justify-content: space-around;
+	align-items: center;
 	list-style: none;
 }
