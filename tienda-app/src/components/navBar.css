@@ -1,15 +1,47 @@
 nav {
-	display: flex;
-	justify-content: space-around;
-	align-items: baseline;
 	min-height: 10vh;
 	background: rgb(69, 82, 87);
-	color: white;
+	height: 100%;
 }
 .navList {
+	list-style: none;
 	display: flex;
-	width: 50%;
+	width: 60%;
 	justify-content: space-around;
 	align-items: center;
-	list-style: none;
+	background-color: chocolate;
+	height: 10vh;
+}
+.hamburguer {
+	display: none;
+}
+
+@media screen and (max-width: 890px) {
+	nav {
+		display: flex;
+		height: 100%;
+		position: relative;
+		background-color: rgba(69, 82, 87, 0.5);
+	}
+
+	.hamburguer {
+		display: block;
+		position: absolute;
+		cursor: pointer;
+		height: 100%;
+	}
+	.line {
+		width: 30px;
+		height: 3px;
+		background: white;
+		margin: 5px;
+	}
+	.navList {
+		background: rgb(69, 82, 87);
+		height: 200px;
+		width: 50%;
+		flex-direction: column;
+		justify-content: flex-start;
+		left: 0;
+	}
 }
