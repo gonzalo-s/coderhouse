@@ -9,7 +9,6 @@ nav {
 	width: 60%;
 	justify-content: space-around;
 	align-items: center;
-	background-color: chocolate;
 	height: 10vh;
 }
 .hamburguer {
@@ -19,16 +18,19 @@ nav {
 @media screen and (max-width: 890px) {
 	nav {
 		display: flex;
+		flex-direction: column;
 		height: 100%;
+		width: 35%;
 		position: relative;
-		background-color: rgba(69, 82, 87, 0.5);
+		background-color: rgb(69, 82, 87);
 	}
 
 	.hamburguer {
 		display: block;
 		position: absolute;
 		cursor: pointer;
-		height: 100%;
+		height: 2rem;
+		/* background-color: rgb(69, 82, 87); */
 	}
 	.line {
 		width: 30px;
@@ -36,12 +38,30 @@ nav {
 		background: white;
 		margin: 5px;
 	}
+	.lineOff {
+		display: none;
+	}
+
+	.xMenuOn {
+		font-size: 30px;
+		color: white;
+		margin: 5px;
+		padding: 5px;
+	}
+	.xMenuOff {
+		display: none;
+	}
 	.navList {
-		background: rgb(69, 82, 87);
-		height: 200px;
-		width: 50%;
 		flex-direction: column;
-		justify-content: flex-start;
-		left: 0;
+		align-items: start;
+		justify-content: space-around;
+		padding-left: 50px;
+		padding-top: 40px;
+		background: rgb(69, 82, 87);
+		height: 100%;
+		width: 100%;
+	}
+	.list-link {
+		padding-top: 10px;
 	}
 }
