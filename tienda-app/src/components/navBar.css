@@ -20,7 +20,7 @@ nav {
 		display: flex;
 		flex-direction: column;
 		height: 100%;
-		width: 35%;
+		width: 250px;
 		position: relative;
 		background-color: rgb(69, 82, 87);
 	}
