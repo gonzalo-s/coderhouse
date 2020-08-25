@@ -1,6 +1,7 @@
 import React from 'react'
 import './navBar.css'
 import { Link } from 'react-router-dom'
+import Icono from './IconoCarrito'
 // VER https://reactrouter.com/web/guides/quick-start
 function NavBar() {
 	let hamState = false
@@ -23,6 +24,7 @@ function NavBar() {
 
 	return (
 		<nav>
+			<div>{Icono}</div>
 			<div className="hamburguer" onClick={hamStateToggle}>
 				<div className="line"></div>
 				<div className="line"></div>
@@ -46,7 +48,7 @@ function NavBar() {
 					<li>Contacto</li>
 				</Link>
 				<Link className="list-link" to="/carrito">
-					<li>Carrito</li>
+					<li>{Icono()}</li>
 				</Link>
 				<Link className="list-link" to="/buscar">
 					<li>Buscar</li>
