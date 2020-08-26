@@ -1,61 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './navBar.css'
 import { Link } from 'react-router-dom'
 import Icono from './IconoCarrito'
 // VER https://reactrouter.com/web/guides/quick-start
 function NavBar() {
-	let hamState = false
-
-	function hamStateToggle() {
-		hamState = !hamState
-		console.log(hamState)
-
-		let xBtnE = document.getElementById('xBtn')
-		let lineBtnE = document.getElementsByClassName('line')
-
-		if (xBtnE.className === 'xMenuOff') {
-			xBtnE.className = 'xMenuOn'
-			lineBtnE.className = 'lineOff'
-		} else {
-			xBtnE.className = 'xMenuOff'
-			lineBtnE.className = 'lineOn'
-		}
-	}
+	const [menuState, setMenuState] = useState(true)
 
 	return (
 		<nav>
-			<div>{Icono}</div>
-			<div className="hamburguer" onClick={hamStateToggle}>
-				<div className="line"></div>
-				<div className="line"></div>
-				<div className="line"></div>
-				<div id="xBtn" className="xMenuOff">
+			{menuState ? (
+				<div
+					id="xBtn"
+					className="xMenu"
+					onClick={() => setMenuState(!menuState)}
+				>
 					X
 				</div>
-			</div>
+			) : (
+				<div
+					className="hamburguer"
+					onClick={() => setMenuState(!menuState)}
+				>
+					<div className="line"></div>
+					<div className="line"></div>
+					<div className="line"></div>
+				</div>
+			)}
 
-			<ul className="navList">
-				<Link className="list-link" to="/">
-					<li>Inicio</li>
-				</Link>
-				<Link className="list-link" to="/nosotros">
-					<li>Nosotros</li>
-				</Link>
-				<Link className="list-link" to="/productos">
-					<li>Productos</li>
-				</Link>
-				<Link className="list-link" to="/contacto">
-					<li>Contacto</li>
-				</Link>
-				<Link className="list-link" to="/carrito">
-					<li>
-						<Icono />
-					</li>
-				</Link>
-				<Link className="list-link" to="/buscar">
-					<li>Buscar</li>
-				</Link>
-			</ul>
+			{menuState ? (
+				<ul className="navList">
+					<Link className="list-link" to="/">
+						<li>Inicio</li>
+					</Link>
+					<Link className="list-link" to="/nosotros">
+						<li>Nosotros</li>
+					</Link>
+					<Link className="list-link" to="/productos">
+						<li>Productos</li>
+					</Link>
+					<Link className="list-link" to="/contacto">
+						<li>Contacto</li>
+					</Link>
+					<Link className="list-link" to="/carrito">
+						<li>
+							<Icono />
+						</li>
+					</Link>
+					<Link className="list-link" to="/buscar">
+						<li>Buscar</li>
+					</Link>
+				</ul>
+			) : null}
 		</nav>
 	)
 }
