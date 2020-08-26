@@ -48,7 +48,9 @@ function NavBar() {
 					<li>Contacto</li>
 				</Link>
 				<Link className="list-link" to="/carrito">
-					<li>{Icono()}</li>
+					<li>
+						<Icono />
+					</li>
 				</Link>
 				<Link className="list-link" to="/buscar">
 					<li>Buscar</li>
