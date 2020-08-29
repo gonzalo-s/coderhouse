@@ -6,10 +6,10 @@ function Contador() {
 	const [counter, setCounter] = useState(0)
 
 	function sumar() {
-		setCounter(counter + 1)
+		setCounter((counter) => counter + 1)
 	}
 	function restar() {
-		setCounter(counter - 1)
+		setCounter((counter) => counter - 1)
 	}
 
 	return (
