@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Button from './Button.js'
 import Display from './Display.js'
 import Input from './Input.js'
-import List from './List.js'
 
 function Contador() {
 	const [state, setState] = useState({
@@ -57,7 +56,6 @@ function Contador() {
 			<div>
 				Max: <Input onChange={handleOnChangeMax} val={state.max} />
 			</div>
-			<List />
 		</div>
 	)
 }

@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Products from './Products.js'
+import Loading from './Loading.js'
 
-function List({ productsList }) {
-	//let listOfProducts = productsList.map((product) => <li>{product.name}</li>)
-	console.log(productsList)
-	let list
-	function createListOfProducts(arr) {
-		list = arr.map((product) => (
-			<li key={product.id}>
-				{'Producto: ' + product.name + ' ' + product.brand}
-			</li>
-		))
-
-		return list
-	}
+function List() {
+	const [newList, setNewList] = useState([])
+	const [loadingState, setLoadingState] = useState(true)
+	Products().then((result) => {
+		setLoadingState(false)
+		setNewList(
+			result.map((product) => (
+				<li key={product.id}>{product.name + ' ' + product.brand}</li>
+			))
+		)
+	})
 	return (
-		<ul style={{ listStyleType: 'none' }}>
-			{productsList ? createListOfProducts(productsList) : ''}
-		</ul>
+		<div>
+			{' '}
+			{loadingState ? (
+				<Loading />
+			) : (
+				<ul style={{ listStyleType: 'none' }}>{newList}</ul>
+			)}
+		</div>
 	)
 }
+
 export default List
