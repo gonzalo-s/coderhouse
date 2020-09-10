@@ -1,5 +1,5 @@
 import React from 'react'
-import icono from './Iconos/shopping-cart.svg'
+import icono from '../Iconos/shopping-cart.svg'
 
 function IconoCarrito() {
 	return (
