@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './navBar.css'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Icono from './IconoCarrito'
 import Inicio from './Inicio'
 import Nosotros from './Nosotros'
@@ -39,26 +39,26 @@ function NavBar({ totalItems, setItemsParaAgregar }) {
 
 					{menuState ? (
 						<ul className="navList">
-							<Link className="list-link" to="/">
+							<NavLink className="list-link" to="/">
 								<li>Inicio</li>
-							</Link>
-							<Link className="list-link" to="/nosotros">
+							</NavLink>
+							<NavLink className="list-link" to="/nosotros">
 								<li>Nosotros</li>
-							</Link>
-							<Link className="list-link" to="/productos">
+							</NavLink>
+							<NavLink className="list-link" to="/productos">
 								<li>Productos</li>
-							</Link>
-							<Link className="list-link" to="/contacto">
+							</NavLink>
+							<NavLink className="list-link" to="/contacto">
 								<li>Contacto</li>
-							</Link>
-							<Link className="list-link" to="/carrito">
+							</NavLink>
+							<NavLink className="list-link" to="/carrito">
 								<li>
 									<Icono />
 								</li>
-							</Link>
-							<Link className="list-link" to="/buscar">
+							</NavLink>
+							<NavLink className="list-link" to="/buscar">
 								<li>Buscar</li>
-							</Link>
+							</NavLink>
 						</ul>
 					) : null}
 				</nav>
