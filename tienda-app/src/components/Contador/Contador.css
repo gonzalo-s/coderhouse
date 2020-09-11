@@ -1,0 +1,18 @@
+.contadorWrapper {
+	display: flex;
+	flex-direction: column;
+
+	justify-content: space-around;
+}
+
+.botonera {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	box-sizing: border-box;
+}
+
+.agregarBtn {
+	display: flex;
+	padding: 10px;
+}

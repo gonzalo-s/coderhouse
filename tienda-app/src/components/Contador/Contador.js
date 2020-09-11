@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Button from './Button.js'
 import Display from './Display.js'
+import './Contador.css'
 
 function Contador({ itemToAdd, max, min }) {
 	const [counter, setCounter] = useState(0)
@@ -21,11 +22,15 @@ function Contador({ itemToAdd, max, min }) {
 	}
 
 	return (
-		<div>
-			<Button sign={'-'} onClick={restar} />
-			<Display contador={counter} />
-			<Button sign={'+'} onClick={sumar} />
-			<Button sign={'Agregar al Carrito'} onClick={handleClick} />
+		<div className={'contadorWrapper'}>
+			<div className={'botonera'}>
+				<Button className={'restarBtn'} sign={'-'} onClick={restar} />
+				<Display className={'display'} contador={counter} />
+				<Button className={'sumarBtn'} sign={'+'} onClick={sumar} />
+			</div>
+			<div className={'agregarBtn'}>
+				<Button sign={'Agregar al Carrito'} onClick={handleClick} />
+			</div>
 		</div>
 	)
 }

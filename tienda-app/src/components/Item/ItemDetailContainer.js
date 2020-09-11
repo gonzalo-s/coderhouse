@@ -3,7 +3,7 @@ import ItemDetail from './ItemDetail'
 import Loading from '../Loading'
 import './ItemDetail.css'
 
-function ItemDetailContainer({ setItemsParaAgregar }) {
+function ItemDetailContainer({ setItemsParaModificar }) {
 	const [data, setData] = useState([])
 	const [loadingState, setLoadingState] = useState(true)
 	console.log(data)
@@ -37,7 +37,7 @@ function ItemDetailContainer({ setItemsParaAgregar }) {
 							<ItemDetail
 								key={i}
 								item={item}
-								setItemsParaAgregar={setItemsParaAgregar}
+								setItemsParaModificar={setItemsParaModificar}
 							/>
 						)
 					})}
@@ -46,7 +46,7 @@ function ItemDetailContainer({ setItemsParaAgregar }) {
 		// <div className={'itemContainer'}>
 		// 	<ItemDetail
 		// 		item={data[0]}
-		// 		setItemsParaAgregar={setItemsParaAgregar}
+		// 		setItemsParaModificar={setItemsParaModificar}
 		// 	/>
 		// </div>
 	}

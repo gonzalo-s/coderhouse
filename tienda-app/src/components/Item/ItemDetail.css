@@ -1,7 +1,8 @@
 .itemDetail {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: space-around;
+	align-items: center;
 	height: 350px;
 	width: 300px;
 	border: 1px solid #ddd;
@@ -15,9 +16,11 @@
 .itemContainer {
 	display: flex;
 	box-sizing: border-box;
-	background-color: red;
+	box-shadow: darkgrey;
 }
 
 .title {
+	display: flex;
 	font-size: 1rem;
+	text-align: center;
 }

@@ -2,14 +2,14 @@ import React from 'react'
 import Contador from '../Contador/Contador.js'
 import './ItemDetail.css'
 
-function ItemDetail({ item, setItemsParaAgregar }) {
+function ItemDetail({ item, setItemsParaModificar }) {
 	console.log(item)
 
 	let max = item.sold_quantity //available_quantity siempre era 1 asi q uso sold para tener otros valores
 	let min = 0
 
 	function itemToAdd(cantidad) {
-		setItemsParaAgregar(cantidad)
+		setItemsParaModificar(cantidad)
 	}
 
 	return (

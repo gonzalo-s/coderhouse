@@ -1,10 +1,12 @@
 import React from 'react'
 import ItemDetailContainer from '../Item/ItemDetailContainer.js'
-function Productos({ setItemsParaAgregar }) {
+function Productos({ setItemsParaModificar }) {
 	return (
 		<div>
 			Pagina Productos
-			<ItemDetailContainer setItemsParaAgregar={setItemsParaAgregar} />
+			<ItemDetailContainer
+				setItemsParaModificar={setItemsParaModificar}
+			/>
 		</div>
 	)
 }

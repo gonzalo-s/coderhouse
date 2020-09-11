@@ -7,8 +7,11 @@ function App() {
 
 	console.log('totalItems: ' + totalItems)
 
-	function setItemsParaAgregar(cantidad) {
+	function setItemsParaModificar(cantidad) {
 		setTotalItems(totalItems + cantidad)
+	}
+	function clearTotalItems() {
+		setTotalItems(0)
 	}
 	console.log('totalItems: ' + totalItems)
 
@@ -16,7 +19,8 @@ function App() {
 		<div>
 			<NavBar
 				totalItems={totalItems}
-				setItemsParaAgregar={setItemsParaAgregar}
+				setItemsParaModificar={setItemsParaModificar}
+				clearTotalItems={clearTotalItems}
 			/>
 		</div>
 	)
