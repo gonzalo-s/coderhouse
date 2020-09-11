@@ -1,45 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Button from './Button.js'
 import Display from './Display.js'
 
-function Contador({ itemToAdd }) {
-	const [state, setState] = useState({
-		counter: 0,
-		min: 0,
-		max: 10,
-	})
-	useEffect(() => {
-		setState({
-			...state,
-			counter: state.counter + itemToAdd,
-		})
-	}, [])
-
-	console.log('itemToAdd: ' + itemToAdd)
-	console.log('counter: ' + state.counter)
+function Contador({ itemToAdd, max, min }) {
+	const [counter, setCounter] = useState(0)
 
 	function sumar() {
-		if (state.counter < state.max) {
-			setState({
-				...state,
-				counter: state.counter + 1,
-			})
+		if (counter < max) {
+			setCounter(counter + 1)
 		}
 	}
+
 	function restar() {
-		if (state.counter > state.min) {
-			setState({
-				...state,
-				counter: state.counter - 1,
-			})
+		if (counter > min) {
+			setCounter(counter - 1)
 		}
+	}
+	function handleClick() {
+		itemToAdd(counter)
 	}
 
 	return (
 		<div>
 			<Button sign={'-'} onClick={restar} />
-			<Display contador={state.counter} />
+			<Display contador={counter} />
 			<Button sign={'+'} onClick={sumar} />
+			<Button sign={'Agregar al Carrito'} onClick={handleClick} />
 		</div>
 	)
 }

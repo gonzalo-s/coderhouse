@@ -11,7 +11,7 @@ import Buscar from './Buscar.js'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 // VER https://reactrouter.com/web/guides/quick-start
-function NavBar({ itemToAdd, setCantidadItemsParaAgregar }) {
+function NavBar({ totalItems, setItemsParaAgregar }) {
 	const [menuState, setMenuState] = useState(true)
 
 	return (
@@ -66,15 +66,11 @@ function NavBar({ itemToAdd, setCantidadItemsParaAgregar }) {
 					<Route path="/" exact component={Inicio} />
 					<Route path="/nosotros" component={Nosotros} />
 					<Route path="/productos">
-						<Productos
-							setCantidadItemsParaAgregar={
-								setCantidadItemsParaAgregar
-							}
-						/>
+						<Productos setItemsParaAgregar={setItemsParaAgregar} />
 					</Route>
 					<Route path="/contacto" component={Contacto} />
 					<Route path="/carrito">
-						<Carrito itemToAdd={itemToAdd} />
+						<Carrito totalItems={totalItems} />
 					</Route>
 					<Route path="/buscar" component={Buscar} />
 				</Switch>

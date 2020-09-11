@@ -1,11 +1,11 @@
 import React from 'react'
-import Contador from '../Contador/Contador.js'
 
-function Carrito({ itemToAdd }) {
-	console.log(itemToAdd)
+function Carrito({ totalItems }) {
+	console.log(totalItems)
+
 	return (
 		<div>
-			<Contador itemToAdd={itemToAdd} />
+			<div>items Totales: {totalItems}</div>
 			Pagina Carrito
 		</div>
 	)

@@ -1,0 +1,23 @@
+.itemDetail {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 350px;
+	width: 300px;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	overflow: hidden;
+	vertical-align: top;
+	margin: 5px;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.itemContainer {
+	display: flex;
+	box-sizing: border-box;
+	background-color: red;
+}
+
+.title {
+	font-size: 1rem;
+}
