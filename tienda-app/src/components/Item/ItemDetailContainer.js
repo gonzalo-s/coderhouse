@@ -26,8 +26,13 @@ function ItemDetailContainer({ setItemsParaAgregar }) {
 	} else {
 		return (
 			<div className={'itemContainer'}>
-				{data.map((item, i) => {
-					if (i < 4) {
+				{data
+					.filter((item, i) => {
+						if (i < 4) {
+							return item
+						}
+					})
+					.map((item, i) => {
 						return (
 							<ItemDetail
 								key={i}
@@ -35,8 +40,7 @@ function ItemDetailContainer({ setItemsParaAgregar }) {
 								setItemsParaAgregar={setItemsParaAgregar}
 							/>
 						)
-					}
-				})}
+					})}
 			</div>
 		)
 		// <div className={'itemContainer'}>
