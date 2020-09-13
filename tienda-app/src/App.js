@@ -3,24 +3,32 @@ import './App.css'
 import NavBar from './components/NavBar/Navbar.js'
 
 function App() {
-	const [totalItems, setTotalItems] = useState(0)
+	const [totalItemsCarrito, setTotalItemsCarrito] = useState(0)
+	const [data, setData] = useState([])
 
-	console.log('totalItems: ' + totalItems)
+	function setNewData(newData) {
+		setData(newData)
+	}
+	console.log('App.js data: ' + data)
 
-	function setItemsParaModificar(cantidad) {
-		setTotalItems(totalItems + cantidad)
+	//console.log('totalItemsCarrito: ' + totalItemsCarrito)
+
+	function setItemsParaModificarCarrito(cantidad) {
+		setTotalItemsCarrito(totalItemsCarrito + cantidad)
 	}
-	function clearTotalItems() {
-		setTotalItems(0)
+	function clearTotalItemsCarrito() {
+		setTotalItemsCarrito(0)
 	}
-	console.log('totalItems: ' + totalItems)
+	console.log('totalItemsCarrito: ' + totalItemsCarrito)
 
 	return (
 		<div>
 			<NavBar
-				totalItems={totalItems}
-				setItemsParaModificar={setItemsParaModificar}
-				clearTotalItems={clearTotalItems}
+				totalItemsCarrito={totalItemsCarrito}
+				setItemsParaModificarCarrito={setItemsParaModificarCarrito}
+				clearTotalItemsCarrito={clearTotalItemsCarrito}
+				setData={setNewData}
+				data={data}
 			/>
 		</div>
 	)

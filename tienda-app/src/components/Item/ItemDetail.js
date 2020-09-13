@@ -1,28 +1,62 @@
-import React from 'react'
-import Contador from '../Contador/Contador.js'
-import './ItemDetail.css'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import Contador from '../Contador/Contador'
+import Loading from '../Loading'
 
-function ItemDetail({ item, setItemsParaModificar }) {
-	console.log(item)
-
-	let max = item.sold_quantity //available_quantity siempre era 1 asi q uso sold para tener otros valores
+function ItemDetail({ data, setItemsParaModificarCarrito }) {
+	const { id } = useParams()
+	const [selectedItem, setSelectedItem] = useState()
+	let max //available_quantity siempre era 1 asi q uso sold_quantity para tener otros valores
 	let min = 0
 
+	useEffect(() => {
+		setSelectedItem(
+			data.filter((item) => {
+				return item.id === id
+			})
+		)
+		max = selectedItem.sold_quantity
+	}, [])
+
+	console.log(selectedItem)
+
+	// useEffect(() => {
+	// 	console.log(data)
+	// 	setItem(
+	// 		data.filter((item) => {
+	// 			return item.id === id
+	// 		})
+	// 	)
+
+	// 	console.log(item)
+
+	// }, [])
+
 	function itemToAdd(cantidad) {
-		setItemsParaModificar(cantidad)
+		setItemsParaModificarCarrito(cantidad)
 	}
 
-	return (
-		<div className={'itemDetail'}>
-			<div className={'title'}>{item.title}</div>
-			<img width={'100'} src={item.thumbnail} alt={item.title} />
+	if (selectedItem === undefined) {
+		return <Loading />
+	} else {
+		return (
+			<div className={'itemDetail'}>
+				{selectedItem[0].id}
+				<div className={'title'}>{selectedItem[0].title}</div>
 
-			{item.sold_quantity > 0 ? (
-				<Contador max={max} min={min} itemToAdd={itemToAdd} />
-			) : (
-				'SIN STOCK'
-			)}
-		</div>
-	)
+				<img
+					width={'100'}
+					src={selectedItem[0].thumbnail}
+					alt={selectedItem[0].title}
+				/>
+
+				{selectedItem[0].sold_quantity > 0 ? (
+					<Contador max={max} min={min} itemToAdd={itemToAdd} />
+				) : (
+					'SIN STOCK'
+				)}
+			</div>
+		)
+	}
 }
 export default ItemDetail

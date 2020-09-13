@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import ItemDetail from './ItemDetail'
+import Item from './Item'
 import Loading from '../Loading'
-import './ItemDetail.css'
+import './Item.css'
 
-function ItemDetailContainer({ setItemsParaModificar }) {
-	const [data, setData] = useState([])
+function ItemDetailContainer({ setItemsParaModificarCarrito, data, setData }) {
+	//const [data, setData] = useState([])
 	const [loadingState, setLoadingState] = useState(true)
 	console.log(data)
+
 	useEffect(() => {
 		fetch(
 			'https://api.mercadolibre.com/sites/MLA/search?q=soldadora%20konan'
@@ -34,21 +35,17 @@ function ItemDetailContainer({ setItemsParaModificar }) {
 					})
 					.map((item, i) => {
 						return (
-							<ItemDetail
+							<Item
 								key={i}
 								item={item}
-								setItemsParaModificar={setItemsParaModificar}
+								setItemsParaModificarCarrito={
+									setItemsParaModificarCarrito
+								}
 							/>
 						)
 					})}
 			</div>
 		)
-		// <div className={'itemContainer'}>
-		// 	<ItemDetail
-		// 		item={data[0]}
-		// 		setItemsParaModificar={setItemsParaModificar}
-		// 	/>
-		// </div>
 	}
 }
 export default ItemDetailContainer
