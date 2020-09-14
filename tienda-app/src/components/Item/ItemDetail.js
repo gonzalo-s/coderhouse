@@ -5,6 +5,8 @@ import Loading from '../Loading'
 
 function ItemDetail({ data, setItemsParaModificarCarrito }) {
 	const { id } = useParams()
+	console.log('id in itemDetail: ' + id)
+	console.log(data)
 	const [selectedItem, setSelectedItem] = useState()
 	let max //available_quantity siempre era 1 asi q uso sold_quantity para tener otros valores
 	let min = 0
@@ -15,8 +17,7 @@ function ItemDetail({ data, setItemsParaModificarCarrito }) {
 				return item.id === id
 			})
 		)
-		max = selectedItem.sold_quantity
-	}, [])
+	}, [data, id])
 
 	console.log(selectedItem)
 
@@ -39,6 +40,7 @@ function ItemDetail({ data, setItemsParaModificarCarrito }) {
 	if (selectedItem === undefined) {
 		return <Loading />
 	} else {
+		max = selectedItem.sold_quantity
 		return (
 			<div className={'itemDetail'}>
 				{selectedItem[0].id}
