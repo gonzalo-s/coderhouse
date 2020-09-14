@@ -1,16 +1,16 @@
 import React from 'react'
 
-function Carrito({ totalItems, clearTotalItems }) {
-	console.log(totalItems)
+function Carrito({ totalItemsCarrito, clearTotalItemsCarrito }) {
+	console.log(totalItemsCarrito)
 
 	function clearCarrito() {
-		clearTotalItems()
+		clearTotalItemsCarrito()
 	}
 
 	return (
 		<div>
 			Pagina Carrito
-			<div>Productos en el Carrito: {totalItems}</div>
+			<div>Productos en el Carrito: {totalItemsCarrito}</div>
 			<button onClick={clearCarrito}>Borrar Productos</button>
 		</div>
 	)

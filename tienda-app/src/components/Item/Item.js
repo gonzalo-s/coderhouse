@@ -3,14 +3,14 @@ import Contador from '../Contador/Contador.js'
 import { Link } from 'react-router-dom'
 import './Item.css'
 
-function Item({ item, setItemsParaModificar }) {
+function Item({ item, setItemsParaModificarCarrito }) {
 	console.log(item)
 
 	let max = item.sold_quantity //available_quantity siempre era 1 asi q uso sold_quantity para tener otros valores
 	let min = 0
 
 	function itemToAdd(cantidad) {
-		setItemsParaModificar(cantidad)
+		setItemsParaModificarCarrito(cantidad)
 	}
 
 	return (
