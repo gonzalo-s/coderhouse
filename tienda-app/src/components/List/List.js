@@ -1,30 +1,28 @@
-import React, { useState, useEffect } from 'react'
-import Products from './Products.js'
-import Loading from '../Loading.js'
+import React from 'react'
+import ItemDetailContainer from '../Item/ItemDetailContainer.js'
 
-function List() {
-	const [newList, setNewList] = useState([])
-	const [loadingState, setLoadingState] = useState(true)
-	useEffect(() => {
-		Products().then((result) => {
-			setLoadingState(false)
-			setNewList(
-				result.map((product) => (
-					<li key={product.id}>
-						{product.name + ' ' + product.brand}
-					</li>
-				))
-			)
-		})
-	}, [newList])
+function List({ data, setItemsParaModificarCarrito }) {
+	console.log(data.data)
+
 	return (
-		<div>
-			{' '}
-			{loadingState ? (
-				<Loading />
-			) : (
-				<ul style={{ listStyleType: 'none' }}>{newList}</ul>
-			)}
+		<div className={'itemContainer'}>
+			{data
+				.filter((item, i) => {
+					if (i < 4) {
+						return item
+					}
+				})
+				.map((item, i) => {
+					return (
+						<ItemDetailContainer
+							key={i}
+							item={item}
+							setItemsParaModificarCarrito={
+								setItemsParaModificarCarrito
+							}
+						/>
+					)
+				})}
 		</div>
 	)
 }

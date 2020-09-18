@@ -11,10 +11,8 @@ function App() {
 	}
 	console.log('App.js data: ' + data)
 
-	//console.log('totalItemsCarrito: ' + totalItemsCarrito)
-
-	function setItemsParaModificarCarrito(cantidad) {
-		setTotalItemsCarrito(totalItemsCarrito + cantidad)
+	function setNewTotalItems(cantidadItems) {
+		setTotalItemsCarrito((total) => total + cantidadItems)
 	}
 	function clearTotalItemsCarrito() {
 		setTotalItemsCarrito(0)
@@ -25,7 +23,7 @@ function App() {
 		<div>
 			<NavBar
 				totalItemsCarrito={totalItemsCarrito}
-				setItemsParaModificarCarrito={setItemsParaModificarCarrito}
+				setItemsParaModificarCarrito={setNewTotalItems}
 				clearTotalItemsCarrito={clearTotalItemsCarrito}
 				setData={setNewData}
 				data={data}

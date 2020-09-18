@@ -1,27 +1,30 @@
 import React from 'react'
 import Contador from '../Contador/Contador.js'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './Item.css'
 
 function Item({ item, setItemsParaModificarCarrito }) {
-	console.log(item)
-
 	let max = item.sold_quantity //available_quantity siempre era 1 asi q uso sold_quantity para tener otros valores
 	let min = 0
-
-	function itemToAdd(cantidad) {
-		setItemsParaModificarCarrito(cantidad)
-	}
-
+	//{{pathname: `/itemdetail/${props.id}`, state: {test:'test'}}}
 	return (
 		<div className={'item'}>
-			<Link to={`/productos/${item.id}`}>
+			<NavLink
+				to={{
+					pathname: `/productos/${item.id}`,
+					state: { item: item },
+				}}
+			>
 				<div className={'title'}>{item.title}</div>
-			</Link>
+			</NavLink>
 			<img width={'100'} src={item.thumbnail} alt={item.title} />
 
 			{item.sold_quantity > 0 ? (
-				<Contador max={max} min={min} itemToAdd={itemToAdd} />
+				<Contador
+					max={max}
+					min={min}
+					setItemsParaModificarCarrito={setItemsParaModificarCarrito}
+				/>
 			) : (
 				'SIN STOCK'
 			)}

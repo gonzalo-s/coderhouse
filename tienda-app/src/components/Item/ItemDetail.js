@@ -1,64 +1,82 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState } from 'react'
+//import { NavLink } from 'react-router-dom'
 import Contador from '../Contador/Contador'
-import Loading from '../Loading'
+import Button from '../Contador/Button'
+//import Loading from '../Loading'
 
-function ItemDetail({ data, setItemsParaModificarCarrito }) {
-	const { id } = useParams()
-	console.log('id in itemDetail: ' + id)
-	console.log(data)
-	const [selectedItem, setSelectedItem] = useState()
-	let max //available_quantity siempre era 1 asi q uso sold_quantity para tener otros valores
-	let min = 0
+function ItemDetail({
+	itemTitle,
+	itemThumbnail,
+	setItemsParaModificarCarrito,
+	min,
+	max,
+}) {
+	const [counter, setCounter] = useState(0)
 
-	useEffect(() => {
-		setSelectedItem(
-			data.filter((item) => {
-				return item.id === id
-			})
-		)
-	}, [data, id])
-
-	console.log(selectedItem)
-
-	// useEffect(() => {
-	// 	console.log(data)
-	// 	setItem(
-	// 		data.filter((item) => {
-	// 			return item.id === id
-	// 		})
-	// 	)
-
-	// 	console.log(item)
-
-	// }, [])
-
-	function itemToAdd(cantidad) {
-		setItemsParaModificarCarrito(cantidad)
+	function sumar() {
+		if (counter < max) {
+			setCounter(counter + 1)
+		}
 	}
 
-	if (selectedItem === undefined) {
-		return <Loading />
-	} else {
-		max = selectedItem.sold_quantity
-		return (
-			<div className={'itemDetail'}>
-				{selectedItem[0].id}
-				<div className={'title'}>{selectedItem[0].title}</div>
-
-				<img
-					width={'100'}
-					src={selectedItem[0].thumbnail}
-					alt={selectedItem[0].title}
-				/>
-
-				{selectedItem[0].sold_quantity > 0 ? (
-					<Contador max={max} min={min} itemToAdd={itemToAdd} />
-				) : (
-					'SIN STOCK'
-				)}
-			</div>
-		)
+	function restar() {
+		if (counter > min) {
+			setCounter(counter - 1)
+		}
 	}
+
+	function handleClick() {
+		console.log('counter clicked: ' + counter)
+		setItemsParaModificarCarrito(counter)
+	}
+
+	return (
+		<div className={'item'}>
+			<div>{itemTitle}</div>
+			<img width={'100'} src={itemThumbnail} alt={itemTitle} />
+
+			{max > 0 ? (
+				<div>
+					<Contador sumar={sumar} restar={restar} counter={counter} />
+					<div className={'agregarBtn'}>
+						<Button
+							sign={'Agregar al Carrito'}
+							onClick={handleClick}
+						/>
+					</div>
+				</div>
+			) : (
+				'SIN STOCK'
+			)}
+		</div>
+	)
 }
+
 export default ItemDetail
+
+// let max = item.sold_quantity //available_quantity siempre era 1 asi q uso sold_quantity para tener otros valores
+// let min = 0
+// //{{pathname: `/itemdetail/${props.id}`, state: {test:'test'}}}
+// return (
+// 	<div className={'item'}>
+// 		<NavLink
+// 			to={{
+// 				pathname: `/productos/${item.id}`,
+// 				state: { item: item },
+// 			}}
+// 		>
+// 			<div className={'title'}>{item.title}</div>
+// 		</NavLink>
+// 		<img width={'100'} src={item.thumbnail} alt={item.title} />
+
+// 		{item.sold_quantity > 0 ? (
+// 			<Contador
+// 				max={max}
+// 				min={min}
+// 				setItemsParaModificarCarrito={setItemsParaModificarCarrito}
+// 			/>
+// 		) : (
+// 			'SIN STOCK'
+// 		)}
+// 	</div>
+// )

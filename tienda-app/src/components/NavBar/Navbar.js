@@ -90,12 +90,7 @@ function NavBar({
 					</Route>
 					<Route path="/buscar" component={Buscar} />
 					<Route path="/Productos/:id">
-						<ItemDetail
-							setItemsParaModificarCarrito={
-								setItemsParaModificarCarrito
-							}
-							data={data}
-						/>
+						<ItemDetail />
 					</Route>
 				</Switch>
 			</div>
