@@ -30,6 +30,7 @@ function ItemDetail({
 	function handleClick() {
 		console.log('counter clicked: ' + counter)
 		setItemsParaModificarCarrito(counter)
+		setCounter(0)
 	}
 
 	return (
@@ -49,7 +50,7 @@ function ItemDetail({
 					<Contador sumar={sumar} restar={restar} counter={counter} />
 					<div className={'agregarBtn'}>
 						<Button
-							sign={'Agregar al Carrito'}
+							sign={'Comprar: ' + counter}
 							onClick={handleClick}
 						/>
 					</div>
