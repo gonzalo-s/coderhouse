@@ -81,6 +81,7 @@ function NavBar({
 							data={data}
 						/>
 					</Route>
+					<Route path="/productos/:id" component={Item} />
 					<Route path="/contacto" component={Contacto} />
 					<Route path="/carrito">
 						<Carrito
@@ -89,9 +90,6 @@ function NavBar({
 						/>
 					</Route>
 					<Route path="/buscar" component={Buscar} />
-					<Route path="/Productos/:id">
-						<Item />
-					</Route>
 				</Switch>
 			</div>
 		</Router>

@@ -38,7 +38,11 @@ function ItemDetail({
 			<NavLink
 				to={{
 					pathname: `/productos/${itemId}`,
-					state: { item: item },
+					state: {
+						item: item,
+						min: min,
+						max: max,
+					},
 				}}
 			>
 				<div>{itemTitle}</div>

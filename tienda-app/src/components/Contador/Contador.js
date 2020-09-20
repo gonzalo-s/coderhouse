@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from './Button.js'
 import Display from './Display.js'
 import './Contador.css'
