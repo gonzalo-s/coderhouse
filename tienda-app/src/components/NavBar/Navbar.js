@@ -8,7 +8,7 @@ import Productos from './Productos'
 import Contacto from './Contacto'
 import Carrito from './Carrito'
 import Buscar from './Buscar.js'
-import ItemDetail from '../Item/ItemDetail.js'
+import Item from '../Item/Item.js'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 // VER https://reactrouter.com/web/guides/quick-start
@@ -90,7 +90,7 @@ function NavBar({
 					</Route>
 					<Route path="/buscar" component={Buscar} />
 					<Route path="/Productos/:id">
-						<ItemDetail />
+						<Item />
 					</Route>
 				</Switch>
 			</div>

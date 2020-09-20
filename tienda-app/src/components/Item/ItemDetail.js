@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-//import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Contador from '../Contador/Contador'
 import Button from '../Contador/Button'
 //import Loading from '../Loading'
 
 function ItemDetail({
+	item,
+	itemId,
 	itemTitle,
 	itemThumbnail,
 	setItemsParaModificarCarrito,
@@ -32,8 +34,15 @@ function ItemDetail({
 
 	return (
 		<div className={'item'}>
-			<div>{itemTitle}</div>
-			<img width={'100'} src={itemThumbnail} alt={itemTitle} />
+			<NavLink
+				to={{
+					pathname: `/productos/${itemId}`,
+					state: { item: item },
+				}}
+			>
+				<div>{itemTitle}</div>
+				<img width={'100'} src={itemThumbnail} alt={itemTitle} />
+			</NavLink>
 
 			{max > 0 ? (
 				<div>

@@ -9,6 +9,8 @@ function ItemDetailContainer({ item, setItemsParaModificarCarrito }) {
 
 	return (
 		<ItemDetail
+			item={item}
+			itemId={item.id}
 			itemTitle={item.title}
 			setItemsParaModificarCarrito={setItemsParaModificarCarrito}
 			itemThumbnail={item.thumbnail}
