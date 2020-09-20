@@ -10,12 +10,8 @@ function Item() {
 	let potencia = item.attributes[3].value_name
 	let peso = item.attributes[4].value_name
 
-	// let itemId = item.id
 	let itemTitle = item.title
-	// let setItemsParaModificarCarrito = setItemsParaModificarCarrito
 	let itemThumbnail = item.thumbnail
-	// let min = 0
-	// let max = item.sold_quantity
 
 	return (
 		<div className={'item'}>
