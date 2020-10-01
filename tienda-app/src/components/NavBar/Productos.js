@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import List from '../List/List'
 import Loading from '../Loading.js'
 
-function Productos({ setItemsParaModificarCarrito, setData, data }) {
+function Productos({ setData, data }) {
 	const [loadingState, setLoadingState] = useState(true)
 
 	useEffect(() => {
@@ -26,10 +26,7 @@ function Productos({ setItemsParaModificarCarrito, setData, data }) {
 		return (
 			<div>
 				Pagina Productos
-				<List
-					data={data}
-					setItemsParaModificarCarrito={setItemsParaModificarCarrito}
-				/>
+				<List data={data} />
 			</div>
 		)
 	}

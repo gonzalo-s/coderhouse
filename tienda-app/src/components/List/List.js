@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemDetailContainer from '../Item/ItemDetailContainer.js'
 
-function List({ data, setItemsParaModificarCarrito }) {
+function List({ data }) {
 	console.log(data.data)
 
 	return (
@@ -13,15 +13,7 @@ function List({ data, setItemsParaModificarCarrito }) {
 					}
 				})
 				.map((item, i) => {
-					return (
-						<ItemDetailContainer
-							key={i}
-							item={item}
-							setItemsParaModificarCarrito={
-								setItemsParaModificarCarrito
-							}
-						/>
-					)
+					return <ItemDetailContainer key={i} item={item} />
 				})}
 		</div>
 	)

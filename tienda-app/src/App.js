@@ -4,7 +4,7 @@ import NavBar from './components/NavBar/Navbar.js'
 import { CartProvider } from './components/Context/CartContext'
 
 function App() {
-	const [totalItemsCarrito, setTotalItemsCarrito] = useState(0)
+	//const [totalItemsCarrito, setTotalItemsCarrito] = useState(0)
 	const [data, setData] = useState([])
 
 	function setNewData(newData) {
@@ -18,7 +18,7 @@ function App() {
 	// function clearTotalItemsCarrito() {
 	// 	setTotalItemsCarrito(0)
 	// }
-	console.log('totalItemsCarrito: ' + totalItemsCarrito)
+	//console.log('totalItemsCarrito: ' + totalItemsCarrito)
 
 	return (
 		<div>

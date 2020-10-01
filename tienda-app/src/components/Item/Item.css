@@ -24,3 +24,17 @@
 	font-size: 1rem;
 	text-align: center;
 }
+
+.carritoItemsWrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.carritoItems {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 650px;
+	border: 1px solid #ddd;
+}
