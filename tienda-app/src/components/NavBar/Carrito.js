@@ -3,11 +3,8 @@ import { CartContext } from '../Context/CartContext'
 
 function Carrito() {
 	const carritoContext = useContext(CartContext)
-	const carrito = carritoContext.carrito
+	const sumItems = carritoContext.sumItems
 	const clearCarrito = carritoContext.clearCarrito
-
-	const sumItems = carrito.reduce((a, { cantidad }) => a + cantidad, 0)
-	console.log(sumItems)
 
 	return (
 		<div>

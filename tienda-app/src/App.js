@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './App.css'
 import NavBar from './components/NavBar/Navbar.js'
+import { CartProvider } from './components/Context/CartContext'
 
 function App() {
 	const [totalItemsCarrito, setTotalItemsCarrito] = useState(0)
@@ -11,9 +12,9 @@ function App() {
 	}
 	console.log('App.js data: ' + data)
 
-	function setNewTotalItems(cantidadItems) {
-		setTotalItemsCarrito((total) => total + cantidadItems)
-	}
+	// function setNewTotalItems(cantidadItems) {
+	// 	setTotalItemsCarrito((total) => total + cantidadItems)
+	// }
 	// function clearTotalItemsCarrito() {
 	// 	setTotalItemsCarrito(0)
 	// }
@@ -21,12 +22,13 @@ function App() {
 
 	return (
 		<div>
-			<NavBar
-				totalItemsCarrito={totalItemsCarrito}
-				setItemsParaModificarCarrito={setNewTotalItems}
-				setData={setNewData}
-				data={data}
-			/>
+			<CartProvider>
+				<NavBar
+					//totalItemsCarrito={totalItemsCarrito}
+					setData={setNewData}
+					data={data}
+				/>
+			</CartProvider>
 		</div>
 	)
 }

@@ -1,10 +1,8 @@
 import React from 'react'
-//import Contador from '../Contador/Contador.js'
-//import { NavLink } from 'react-router-dom'
 import './Item.css'
 import ItemDetail from '../Item/ItemDetail'
 
-function ItemDetailContainer({ item, setItemsParaModificarCarrito }) {
+function ItemDetailContainer({ item }) {
 	console.log(item)
 
 	return (
@@ -12,7 +10,6 @@ function ItemDetailContainer({ item, setItemsParaModificarCarrito }) {
 			item={item}
 			itemId={item.id}
 			itemTitle={item.title}
-			setItemsParaModificarCarrito={setItemsParaModificarCarrito}
 			itemThumbnail={item.thumbnail}
 			min={1}
 			max={item.sold_quantity}

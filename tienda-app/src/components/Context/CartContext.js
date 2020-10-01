@@ -6,6 +6,9 @@ export function CartProvider({ children }) {
 	const [carrito, setCarrito] = useState([])
 	console.log(carrito)
 
+	const sumItems = carrito.reduce((a, { cantidad }) => a + cantidad, 0)
+	console.log(sumItems)
+
 	function clearCarrito() {
 		setCarrito([])
 	}
@@ -15,6 +18,7 @@ export function CartProvider({ children }) {
 				carrito,
 				setCarrito,
 				clearCarrito,
+				sumItems,
 			}}
 		>
 			{children}
