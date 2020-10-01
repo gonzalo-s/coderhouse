@@ -9,6 +9,7 @@ import Contacto from './Contacto'
 import Carrito from './Carrito'
 import Buscar from './Buscar.js'
 import Item from '../Item/Item.js'
+import { CartProvider } from '../Context/CartContext'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 // VER https://reactrouter.com/web/guides/quick-start
@@ -70,26 +71,28 @@ function NavBar({
 					) : null}
 				</nav>
 				<Switch>
-					<Route path="/" exact component={Inicio} />
-					<Route path="/nosotros" component={Nosotros} />
-					<Route path="/productos" exact>
-						<Productos
-							setItemsParaModificarCarrito={
-								setItemsParaModificarCarrito
-							}
-							setData={setData}
-							data={data}
-						/>
-					</Route>
-					<Route path="/productos/:id" component={Item} />
-					<Route path="/contacto" component={Contacto} />
-					<Route path="/carrito">
-						<Carrito
-							totalItemsCarrito={totalItemsCarrito}
-							clearTotalItemsCarrito={clearTotalItemsCarrito}
-						/>
-					</Route>
-					<Route path="/buscar" component={Buscar} />
+					<CartProvider>
+						<Route path="/" exact component={Inicio} />
+						<Route path="/nosotros" component={Nosotros} />
+						<Route path="/productos" exact>
+							<Productos
+								setItemsParaModificarCarrito={
+									setItemsParaModificarCarrito
+								}
+								setData={setData}
+								data={data}
+							/>
+						</Route>
+						<Route path="/productos/:id" component={Item} />
+						<Route path="/contacto" component={Contacto} />
+						<Route path="/carrito">
+							<Carrito
+								totalItemsCarrito={totalItemsCarrito}
+								clearTotalItemsCarrito={clearTotalItemsCarrito}
+							/>
+						</Route>
+						<Route path="/buscar" component={Buscar} />
+					</CartProvider>
 				</Switch>
 			</div>
 		</Router>

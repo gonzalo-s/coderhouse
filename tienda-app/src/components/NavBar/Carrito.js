@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartContext } from '../Context/CartContext'
 
-function Carrito({ totalItemsCarrito, clearTotalItemsCarrito }) {
-	console.log(totalItemsCarrito)
+function Carrito() {
+	const carritoContext = useContext(CartContext)
+	const carrito = carritoContext.carrito
+	const clearCarrito = carritoContext.clearCarrito
 
-	function clearCarrito() {
-		clearTotalItemsCarrito()
-	}
+	const sumItems = carrito.reduce((a, { cantidad }) => a + cantidad, 0)
+	console.log(sumItems)
 
 	return (
 		<div>
 			Pagina Carrito
-			<div>Productos en el Carrito: {totalItemsCarrito}</div>
+			<div>Productos en el Carrito: {sumItems}</div>
 			<button onClick={clearCarrito}>Borrar Productos</button>
 		</div>
 	)

@@ -14,7 +14,7 @@ function ItemDetailContainer({ item, setItemsParaModificarCarrito }) {
 			itemTitle={item.title}
 			setItemsParaModificarCarrito={setItemsParaModificarCarrito}
 			itemThumbnail={item.thumbnail}
-			min={0}
+			min={1}
 			max={item.sold_quantity}
 		/>
 	)

@@ -1,6 +1,6 @@
 import React from 'react'
 
 function Nosotros() {
-	return <div>Pagina Nosotros</div>
+	return <div>Pagina Nosotros </div>
 }
 export default Nosotros
