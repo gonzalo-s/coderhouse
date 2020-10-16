@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { CartContext } from '../Context/CartContext'
 import { NavLink } from 'react-router-dom'
 import '../Item/Item.css'
@@ -8,6 +8,7 @@ import 'firebase/firestore'
 
 function Carrito() {
 	const carritoContext = useContext(CartContext)
+	const [orderId, setOrderId] = useState('')
 	const carrito = carritoContext.carrito
 	const sumItems = carritoContext.sumItems
 	const totalValue = carritoContext.totalValue
@@ -21,18 +22,18 @@ function Carrito() {
 		date: firebase.firestore.Timestamp.fromDate(new Date()),
 		total: totalValue,
 	}
+	console.log(orderId)
 	function addNewOrder() {
 		orders
 			.add(newOrder)
 			.then(({ id }) => {
-				console.log(id)
-				//setOrderId(id) //success
+				setOrderId(id) //success
 			})
 			.catch((err) => {
 				console.log(err) //error
 			})
 			.finally(() => {
-				console.log('nueva orden agregada')
+				console.log('order agregada')
 			})
 	}
 	console.log(carrito)
