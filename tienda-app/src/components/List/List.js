@@ -2,7 +2,7 @@ import React from 'react'
 import ItemDetailContainer from '../Item/ItemDetailContainer.js'
 
 function List({ data }) {
-	console.log(data.data)
+	console.log(data)
 
 	return (
 		<div className={'itemContainer'}>

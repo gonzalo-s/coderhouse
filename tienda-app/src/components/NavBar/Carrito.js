@@ -2,13 +2,39 @@ import React, { useContext } from 'react'
 import { CartContext } from '../Context/CartContext'
 import { NavLink } from 'react-router-dom'
 import '../Item/Item.css'
+import * as firebase from 'firebase/app'
+import { getFirestore } from '../../firebase'
+import 'firebase/firestore'
 
 function Carrito() {
 	const carritoContext = useContext(CartContext)
 	const carrito = carritoContext.carrito
 	const sumItems = carritoContext.sumItems
+	const totalValue = carritoContext.totalValue
 	const clearCarrito = carritoContext.clearCarrito
-
+	const user = carritoContext.user
+	const db = getFirestore()
+	const orders = db.collection('orders')
+	const newOrder = {
+		buyer: user.name,
+		items: carrito,
+		date: firebase.firestore.Timestamp.fromDate(new Date()),
+		total: totalValue,
+	}
+	function addNewOrder() {
+		orders
+			.add(newOrder)
+			.then(({ id }) => {
+				console.log(id)
+				//setOrderId(id) //success
+			})
+			.catch((err) => {
+				console.log(err) //error
+			})
+			.finally(() => {
+				console.log('nueva orden agregada')
+			})
+	}
 	console.log(carrito)
 
 	if (sumItems > 0) {
@@ -16,7 +42,6 @@ function Carrito() {
 			<div>
 				<div className={'carritoItemsWrapper'}>
 					{carrito.map((item, i) => {
-						console.log(item)
 						return (
 							<div key={i} className={'carritoItems'}>
 								<div> {item.item.title}</div>
@@ -26,13 +51,16 @@ function Carrito() {
 									alt={item.item.title}
 								/>
 								<div>cantidad: {item.cantidad}</div>
+								<div>subtotal: {item.subTotal}</div>
 							</div>
 						)
 					})}
+					<div>Total:{totalValue}</div>
 				</div>
 				Pagina Carrito
 				<div>Productos en el Carrito: {sumItems}</div>
 				<button onClick={clearCarrito}>Borrar Productos</button>
+				<button onClick={addNewOrder}>CONFIRMAR COMPRA</button>
 			</div>
 		)
 	} else {

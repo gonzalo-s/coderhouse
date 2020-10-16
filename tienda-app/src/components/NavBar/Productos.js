@@ -1,21 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import List from '../List/List'
 import Loading from '../Loading.js'
+import { getFirestore } from '../../firebase'
 
 function Productos({ setData, data }) {
 	const [loadingState, setLoadingState] = useState(true)
 
 	useEffect(() => {
-		fetch(
-			'https://api.mercadolibre.com/sites/MLA/search?q=soldadora%20konan'
-		)
-			.then((response) => {
-				setLoadingState(true)
-				return response.json()
+		//usando firebase
+		setLoadingState(true)
+		const db = getFirestore()
+		const itemCollection = db.collection('items')
+
+		itemCollection
+			.get()
+			.then((querySnapshot) => {
+				if (querySnapshot.size === 0) {
+					console.log('no results')
+				}
+				setData(
+					querySnapshot.docs.map((doc) => {
+						return {
+							id: doc.id,
+							...doc.data(),
+						}
+					})
+				)
 			})
-			.then((res) => {
-				console.log('res then: ' + res.results)
-				setData(res.results)
+			.catch((error) => {
+				console.log('hubo un error: ', error)
+			})
+			.finally(() => {
 				setLoadingState(false)
 			})
 	}, [])

@@ -6,20 +6,17 @@ function Item() {
 	let location = useLocation()
 	let item = location.state.item
 	console.log(item)
-	let modelo = item.attributes[2].value_name
-	let potencia = item.attributes[3].value_name
-	let peso = item.attributes[4].value_name
+	let brand = item.brand
+	let description = item.description
 
 	let itemTitle = item.title
-	let itemThumbnail = item.thumbnail
+	let itemThumbnail = item.imageId
 
 	return (
 		<div className={'item'}>
-			<div>Modelo: {modelo}</div>
-			<div>Potencia: {potencia}</div>
-			<div>Peso: {peso}</div>
-
 			<div>{itemTitle}</div>
+			<div>Marca: {brand}</div>
+			<div>descripcion: {description}</div>
 			<img width={'100'} src={itemThumbnail} alt={itemTitle} />
 		</div>
 	)

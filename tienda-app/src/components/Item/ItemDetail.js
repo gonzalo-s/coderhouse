@@ -29,20 +29,20 @@ function ItemDetail({ item, itemId, itemTitle, itemThumbnail, min, max }) {
 		)
 		console.log('itemIndex: ' + itemIndex)
 		if (itemIndex >= 0) {
-			console.log('item ya estaba en el carrito')
-			//let newCantidad = carrito[itemIndex].cantidad + counter
-			//let carritoCopy = [...carrito]
+			console.log('item SI estaba en el carrito')
 			const carritoCopy = JSON.parse(JSON.stringify(carrito))
-			//console.log(carritoCopy[itemIndex])
 			carritoCopy[itemIndex].cantidad =
 				carritoCopy[itemIndex].cantidad + counter
+			carritoCopy[itemIndex].subTotal =
+				carritoCopy[itemIndex].item.price *
+				carritoCopy[itemIndex].cantidad
 			setCarrito(carritoCopy)
 		} else {
 			console.log('item NO estaba en el carrito')
 
 			setCarrito((lastCarrito) => [
 				...lastCarrito,
-				{ cantidad: counter, item },
+				{ cantidad: counter, item, subTotal: counter * item.price },
 			])
 		}
 		console.log(carrito)
@@ -67,6 +67,7 @@ function ItemDetail({ item, itemId, itemTitle, itemThumbnail, min, max }) {
 			>
 				<div>{itemTitle}</div>
 				<img width={'100'} src={itemThumbnail} alt={itemTitle} />
+				<div>Precio: {item.price}</div>
 			</NavLink>
 
 			{max > 0 ? (

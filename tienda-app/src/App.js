@@ -10,7 +10,7 @@ function App() {
 	function setNewData(newData) {
 		setData(newData)
 	}
-	console.log('App.js data: ' + data)
+	console.log('App.js data: ', data)
 
 	// function setNewTotalItems(cantidadItems) {
 	// 	setTotalItemsCarrito((total) => total + cantidadItems)

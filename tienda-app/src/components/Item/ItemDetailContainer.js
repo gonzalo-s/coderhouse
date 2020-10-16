@@ -10,9 +10,9 @@ function ItemDetailContainer({ item }) {
 			item={item}
 			itemId={item.id}
 			itemTitle={item.title}
-			itemThumbnail={item.thumbnail}
+			itemThumbnail={item.imageId}
 			min={1}
-			max={item.sold_quantity}
+			max={item.stock}
 		/>
 	)
 }
