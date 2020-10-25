@@ -4,26 +4,15 @@ import Contador from '../Contador/Contador'
 import Button from '../Contador/Button'
 import { CartContext } from '../Context/CartContext'
 
-function ItemDetail({ item, itemId, itemTitle, itemThumbnail, min, max }) {
+function ItemDetail({ item }) {
+	const { id, title, imageId, stock, price } = item
 	const { addToCart, cantidadEnCarrito } = useContext(CartContext)
 
 	const [itemCounter, setItemCounter] = useState(1)
 
-	function sumar() {
-		if (itemCounter < max) {
-			setItemCounter(itemCounter + 1)
-		}
-	}
-
-	function restar() {
-		if (itemCounter > min) {
-			setItemCounter(itemCounter - 1)
-		}
-	}
-
 	function handleClick() {
 		setItemCounter(1)
-		addToCart(itemId, item, itemCounter)
+		addToCart(item, itemCounter)
 	}
 
 	return (
@@ -31,34 +20,28 @@ function ItemDetail({ item, itemId, itemTitle, itemThumbnail, min, max }) {
 			<NavLink
 				className={'itemInfoContainer'}
 				to={{
-					pathname: `/productos/${itemId}`,
-					state: {
-						item: item,
-						itemId: itemId,
-						min: min,
-						max: max,
-					},
+					pathname: `/productos/${id}`,
 				}}
 			>
-				<div className={'title'}>{itemTitle}</div>
+				<div className={'title'}>{title}</div>
 				<img
 					className={'imgBox'}
 					width={'50%'}
-					src={itemThumbnail}
-					alt={itemTitle}
+					src={imageId}
+					alt={title}
 				/>
-				<h6>Precio: {item.price}</h6>
+				<h6>Precio: {price}</h6>
 			</NavLink>
 			<div className={'stock'}>
-				stock: {item.stock - cantidadEnCarrito(itemId)}
+				stock: {stock - cantidadEnCarrito(id)}
 			</div>
 
-			{max > 0 ? (
+			{stock > 0 ? (
 				<div>
 					<Contador
-						sumar={sumar}
-						restar={restar}
-						counter={itemCounter}
+						max={stock}
+						value={itemCounter}
+						onChange={setItemCounter}
 					/>
 					<div className={'agregarBtn'}>
 						<Button

@@ -1,11 +1,13 @@
 import React from 'react'
-import ItemDetailContainer from '../Item/ItemDetailContainer.js'
+import ItemDetail from '../Item/ItemDetail.js'
 
 function List({ items }) {
 	return (
 		<div className={'itemContainer'}>
-			{items.slice(0, 4).map((item, i) => {
-				return <ItemDetailContainer key={i} item={item} />
+			{items.map((item, i) => {
+				return (
+					<ItemDetail key={i} item={item} min={1} max={item.stock} />
+				)
 			})}
 		</div>
 	)

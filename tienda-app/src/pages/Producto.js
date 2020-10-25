@@ -14,7 +14,7 @@ function Producto() {
 	console.log(state)
 	const [item, setItem] = useState([])
 	const { addToCart, cantidadEnCarrito } = useContext(CartContext)
-	// object deconstructing
+
 	let { id } = useParams()
 	useEffect(() => {
 		setState('loading')
@@ -42,7 +42,7 @@ function Producto() {
 				setState('error')
 			})
 			.finally(() => {})
-	}, [setState, setItem, id])
+	}, [id])
 
 	if (state === 'loading') return <Loading />
 	else if (state === 'error') return <div>Error, producto no encontrado</div>
@@ -51,29 +51,9 @@ function Producto() {
 	let itemId = id
 	const { stock, brand, description, title, imageId } = item
 
-	let max = item.stock
-	let min = 1
-	//let brand = item.brand
-	//let description = item.description
-
-	//let itemTitle = item.title
-	//let itemThumbnail = item.imageId
-
-	function sumar() {
-		if (itemCounter < max) {
-			setItemCounter(itemCounter + 1)
-		}
-	}
-
-	function restar() {
-		if (itemCounter > min) {
-			setItemCounter(itemCounter - 1)
-		}
-	}
-
 	function handleBuyClick() {
 		setItemCounter(1)
-		addToCart(itemId, item, itemCounter)
+		addToCart({ ...item, id }, itemCounter)
 	}
 
 	return (
@@ -85,12 +65,12 @@ function Producto() {
 			<div className={'stock'}>
 				stock: {stock - cantidadEnCarrito(itemId)}
 			</div>
-			{max > 0 ? (
+			{stock > 0 ? (
 				<div>
 					<Contador
-						sumar={sumar}
-						restar={restar}
-						counter={itemCounter}
+						max={stock}
+						value={itemCounter}
+						onChange={setItemCounter}
 					/>
 					<div className={'agregarBtn'}>
 						<Button

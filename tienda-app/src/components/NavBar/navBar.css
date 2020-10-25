@@ -22,7 +22,6 @@ nav {
 	nav {
 		display: flex;
 		flex-direction: column;
-
 		width: 250px;
 		position: relative;
 		background-color: rgb(69, 82, 87);

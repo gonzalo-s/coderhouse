@@ -21,10 +21,10 @@ export function CartProvider({ children }) {
 		return 0
 	}
 
-	function addToCart(searchId, item, itemCounter) {
+	function addToCart(item, itemCounter) {
 		//busca el index del item dentro del carrito
 		const itemIndex = carrito.findIndex(
-			(element) => element.item.id === searchId
+			(element) => element.item.id === item.id
 		)
 		console.log('itemIndex: ' + itemIndex)
 		if (itemIndex >= 0) {

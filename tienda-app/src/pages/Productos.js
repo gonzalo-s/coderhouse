@@ -1,66 +1,48 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import List from '../components/List/List'
 import Loading from '../components/Loading'
-import { getFirestore } from '../firebase'
+import useProductList from '../components/useProductList'
+import { useParams, useHistory } from 'react-router-dom'
 
 function Productos() {
-	const [loadingState, setLoadingState] = useState(true)
-	const [items, setItems] = useState([])
+	let { categoryId } = useParams()
+	const [state, items, error] = useProductList(categoryId)
+	let history = useHistory()
 
-	useEffect(() => {
-		//usando firebase
-		setLoadingState(true)
-		const db = getFirestore()
-		const itemCollection = db.collection('items')
+	function onCategoryChange(event) {
+		let categoryId = event.target.value
+		if (categoryId === 'todos') {
+			history.push('/productos')
+		} else {
+			history.push('/categorias/' + categoryId)
+		}
+	}
 
-		itemCollection
-			.get()
-			.then((querySnapshot) => {
-				if (querySnapshot.size === 0) {
-					console.log('no results')
-				}
-				setItems(
-					querySnapshot.docs.map((doc) => {
-						return {
-							id: doc.id,
-							...doc.data(),
-						}
-					})
-				)
-			})
-			.catch((error) => {
-				console.log('hubo un error: ', error)
-			})
-			.finally(() => {
-				setLoadingState(false)
-			})
-	}, [])
-	//prueba con onSnapshot para actualizar en tiempo real
+	switch (state) {
+		case 'loading':
+		case 'idle':
+			return <Loading />
 
-	// itemCollection.onSnapshot((snapshot) => {
-	// 	if (snapshot.size === 0) {
-	// 		return console.log('no results')
-	// 	} else if (snapshot === undefined || snapshot === null) {
-	// 		return console.log('db return error')
-	// 	} else {
-	// 		setData(
-	// 			snapshot.docs.map((doc) => {
-	// 				return { id: doc.id, ...doc.data() }
-	// 			})
-	// 		)
-	// 		setLoadingState(false)
-	// 	}
-	// })
+		case 'success':
+			return (
+				<div>
+					<h2>Productos</h2>
+					<label>
+						Categorias
+						<select value={categoryId} onChange={onCategoryChange}>
+							<option value="todos">Todos</option>
+							<option value="soldadoras">Soldadoras</option>
+							<option value="mascaras">Mascaras</option>
+						</select>
+					</label>
+					<List items={items} />
+				</div>
+			)
 
-	if (loadingState) {
-		return <Loading />
-	} else {
-		return (
-			<div>
-				Pagina Productos
-				<List items={items} />
-			</div>
-		)
+		case 'error':
+			return <div>{error}</div>
+		default:
+			return null
 	}
 }
 export default Productos
