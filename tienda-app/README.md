@@ -1,4 +1,6 @@
-# APP DE E-COMMERCE proyecto final CoderHouse
+# APP DE E-COMMERCE
+
+#### -Proyecto final CoderHouse
 
 ## React Js
 
