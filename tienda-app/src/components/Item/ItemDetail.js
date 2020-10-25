@@ -4,78 +4,65 @@ import Contador from '../Contador/Contador'
 import Button from '../Contador/Button'
 import { CartContext } from '../Context/CartContext'
 
-//import Loading from '../Loading'
-
 function ItemDetail({ item, itemId, itemTitle, itemThumbnail, min, max }) {
-	const carritoContext = useContext(CartContext)
-	const setCarrito = carritoContext.setCarrito
-	const carrito = carritoContext.carrito
-	const [counter, setCounter] = useState(1)
+	const { addToCart, cantidadEnCarrito } = useContext(CartContext)
+
+	const [itemCounter, setItemCounter] = useState(1)
+
 	function sumar() {
-		if (counter < max) {
-			setCounter(counter + 1)
+		if (itemCounter < max) {
+			setItemCounter(itemCounter + 1)
 		}
 	}
 
 	function restar() {
-		if (counter > min) {
-			setCounter(counter - 1)
+		if (itemCounter > min) {
+			setItemCounter(itemCounter - 1)
 		}
-	}
-
-	function searchInCarrito(searchId) {
-		const itemIndex = carrito.findIndex(
-			(element) => element.item.id === searchId
-		)
-		console.log('itemIndex: ' + itemIndex)
-		if (itemIndex >= 0) {
-			console.log('item SI estaba en el carrito')
-			const carritoCopy = JSON.parse(JSON.stringify(carrito))
-			carritoCopy[itemIndex].cantidad =
-				carritoCopy[itemIndex].cantidad + counter
-			carritoCopy[itemIndex].subTotal =
-				carritoCopy[itemIndex].item.price *
-				carritoCopy[itemIndex].cantidad
-			setCarrito(carritoCopy)
-		} else {
-			console.log('item NO estaba en el carrito')
-
-			setCarrito((lastCarrito) => [
-				...lastCarrito,
-				{ cantidad: counter, item, subTotal: counter * item.price },
-			])
-		}
-		console.log(carrito)
 	}
 
 	function handleClick() {
-		setCounter(0)
-		searchInCarrito(itemId)
+		setItemCounter(1)
+		addToCart(itemId, item, itemCounter)
 	}
 
 	return (
-		<div className={'item'}>
+		<div className={'itemDetail'}>
 			<NavLink
+				className={'itemInfoContainer'}
 				to={{
 					pathname: `/productos/${itemId}`,
 					state: {
 						item: item,
+						itemId: itemId,
 						min: min,
 						max: max,
 					},
 				}}
 			>
-				<div>{itemTitle}</div>
-				<img width={'100'} src={itemThumbnail} alt={itemTitle} />
-				<div>Precio: {item.price}</div>
+				<div className={'title'}>{itemTitle}</div>
+				<img
+					className={'imgBox'}
+					width={'50%'}
+					src={itemThumbnail}
+					alt={itemTitle}
+				/>
+				<h6>Precio: {item.price}</h6>
+				<div className={'stock'}>
+					stock: {item.stock - cantidadEnCarrito(itemId)}
+				</div>
 			</NavLink>
 
 			{max > 0 ? (
 				<div>
-					<Contador sumar={sumar} restar={restar} counter={counter} />
+					<Contador
+						sumar={sumar}
+						restar={restar}
+						counter={itemCounter}
+					/>
 					<div className={'agregarBtn'}>
 						<Button
-							sign={'Comprar: ' + counter}
+							sign={'Comprar: ' + itemCounter}
 							onClick={handleClick}
 						/>
 					</div>

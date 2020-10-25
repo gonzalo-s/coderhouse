@@ -3,8 +3,6 @@ import './Item.css'
 import ItemDetail from '../Item/ItemDetail'
 
 function ItemDetailContainer({ item }) {
-	console.log(item)
-
 	return (
 		<ItemDetail
 			item={item}

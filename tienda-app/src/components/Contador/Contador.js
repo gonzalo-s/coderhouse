@@ -4,8 +4,6 @@ import Display from './Display.js'
 import './Contador.css'
 
 function Contador({ sumar, restar, counter }) {
-	//const [counter, setCounter] = useState(0)
-
 	return (
 		<div className={'contadorWrapper'}>
 			<div className={'botonera'}>

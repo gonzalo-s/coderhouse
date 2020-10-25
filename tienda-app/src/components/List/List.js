@@ -2,15 +2,11 @@ import React from 'react'
 import ItemDetailContainer from '../Item/ItemDetailContainer.js'
 
 function List({ data }) {
-	console.log(data)
-
 	return (
 		<div className={'itemContainer'}>
 			{data
 				.filter((item, i) => {
-					if (i < 4) {
-						return item
-					}
+					return i < 4
 				})
 				.map((item, i) => {
 					return <ItemDetailContainer key={i} item={item} />

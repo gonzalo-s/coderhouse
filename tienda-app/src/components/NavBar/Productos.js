@@ -34,6 +34,22 @@ function Productos({ setData, data }) {
 				setLoadingState(false)
 			})
 	}, [])
+	//prueba con onSnapshot para actualizar en tiempo real
+
+	// itemCollection.onSnapshot((snapshot) => {
+	// 	if (snapshot.size === 0) {
+	// 		return console.log('no results')
+	// 	} else if (snapshot === undefined || snapshot === null) {
+	// 		return console.log('db return error')
+	// 	} else {
+	// 		setData(
+	// 			snapshot.docs.map((doc) => {
+	// 				return { id: doc.id, ...doc.data() }
+	// 			})
+	// 		)
+	// 		setLoadingState(false)
+	// 	}
+	// })
 
 	if (loadingState) {
 		return <Loading />

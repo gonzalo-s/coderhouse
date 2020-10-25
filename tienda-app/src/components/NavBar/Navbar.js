@@ -7,7 +7,6 @@ import Nosotros from './Nosotros'
 import Productos from './Productos'
 import Contacto from './Contacto'
 import Carrito from './Carrito'
-import Buscar from './Buscar.js'
 import Item from '../Item/Item.js'
 //import { CartProvider } from '../Context/CartContext'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -58,9 +57,6 @@ function NavBar({ setData, data }) {
 									<Icono />
 								</li>
 							</NavLink>
-							<NavLink className="list-link" to="/buscar">
-								<li>Buscar</li>
-							</NavLink>
 						</ul>
 					) : null}
 				</nav>
@@ -73,7 +69,6 @@ function NavBar({ setData, data }) {
 					<Route path="/productos/:id" component={Item} />
 					<Route path="/contacto" component={Contacto} />
 					<Route path="/carrito" component={Carrito} />
-					<Route path="/buscar" component={Buscar} />
 				</Switch>
 			</div>
 		</Router>
