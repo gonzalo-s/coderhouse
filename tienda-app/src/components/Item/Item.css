@@ -93,3 +93,8 @@
 .orderTotal {
 	margin: 15px 0px 0px 80%;
 }
+@media screen and (max-width: 890px) {
+	.itemContainer {
+		flex-direction: column;
+	}
+}

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import List from '../List/List'
-import Loading from '../Loading.js'
-import { getFirestore } from '../../firebase'
+import List from '../components/List/List'
+import Loading from '../components/Loading'
+import { getFirestore } from '../firebase'
 
-function Productos({ setData, data }) {
+function Productos() {
 	const [loadingState, setLoadingState] = useState(true)
+	const [items, setItems] = useState([])
 
 	useEffect(() => {
 		//usando firebase
@@ -18,7 +19,7 @@ function Productos({ setData, data }) {
 				if (querySnapshot.size === 0) {
 					console.log('no results')
 				}
-				setData(
+				setItems(
 					querySnapshot.docs.map((doc) => {
 						return {
 							id: doc.id,
@@ -57,7 +58,7 @@ function Productos({ setData, data }) {
 		return (
 			<div>
 				Pagina Productos
-				<List data={data} />
+				<List items={items} />
 			</div>
 		)
 	}

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { CartContext } from '../Context/CartContext'
 
-import icono from '../Iconos/shopping-cart.svg'
+import icono from './shopping-cart.svg'
 
 function IconoCarrito() {
 	const carritoContext = useContext(CartContext)

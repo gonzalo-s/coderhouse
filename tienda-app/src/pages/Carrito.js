@@ -1,12 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { CartContext } from '../Context/CartContext'
+import React, { useContext, useState } from 'react'
+import { CartContext } from '../components/Context/CartContext'
 import { NavLink } from 'react-router-dom'
-import '../Item/Item.css'
+import '../components/Item/Item.css'
 import * as firebase from 'firebase/app'
-import { getFirestore } from '../../firebase'
+import { getFirestore } from '../firebase'
 import 'firebase/firestore'
-import Order from '../Order'
-import BuyerInputData from '../BuyerInputData'
+import Order from '../components/Order'
+import BuyerInputData from '../components/BuyerInputData'
 
 function Carrito() {
 	const [orderId, setOrderId] = useState('')
@@ -25,8 +25,36 @@ function Carrito() {
 	function addNewOrder() {
 		orders
 			.add(newOrder)
-			.then(({ id }) => {
+			.then(async function ({ id }) {
 				setOrderId(id) //success
+				if (id !== '') {
+					//hacer batch update stock
+					const itemsToUpdate = db.collection('items').where(
+						firebase.firestore.FieldPath.documentId(),
+						'in',
+						carrito.map((i) => i.item.id)
+					)
+
+					const query = await itemsToUpdate.get()
+					const batch = db.batch()
+
+					function findCarritoItemById(dbId) {
+						let itemFound = carrito.find((i) => i.item.id === dbId)
+						return itemFound
+					}
+
+					query.docs.forEach((docs, idx) => {
+						console.log(docs.data())
+						let soldQty = findCarritoItemById(docs.id).cantidad
+						if (docs.data().stock >= soldQty) {
+							batch.update(docs.ref, {
+								stock: docs.data().stock - soldQty,
+							})
+						}
+					})
+
+					await batch.commit()
+				}
 			})
 			.catch((err) => {
 				console.log(err) //error
@@ -38,51 +66,6 @@ function Carrito() {
 			})
 	}
 
-	// function getOrderById(irdId) {
-	// 	const db = getFirestore()
-	// 	const itemCollection = db.collection('orders')
-
-	// 	itemCollection.get()
-
-	// }
-
-	useEffect(() => {
-		async function asyncCall() {
-			if (orderId !== '') {
-				//hacer batch update stock
-				const itemsToUpdate = db.collection('items').where(
-					firebase.firestore.FieldPath.documentId(),
-					'in',
-					carrito.map((i) => i.item.id)
-				)
-
-				const query = await itemsToUpdate.get()
-				const batch = db.batch()
-
-				function findCarritoItemById(dbId) {
-					let itemFound = carrito.find((i) => i.item.id === dbId)
-					return itemFound
-				}
-
-				console.log(findCarritoItemById('5zsuob97hvooYrdSpTCc'))
-
-				query.docs.forEach((docs, idx) => {
-					console.log(docs.data())
-					let soldQty = findCarritoItemById(docs.id).cantidad
-					if (docs.data().stock >= soldQty) {
-						batch.update(docs.ref, {
-							stock: docs.data().stock - soldQty,
-						})
-					}
-				})
-
-				await batch.commit()
-			}
-		}
-		asyncCall()
-	}, [orderId, db])
-
-	//console.log(carrito)
 	if (orderId !== '') {
 		return <Order orderId={orderId} />
 	} else if (sumItems > 0) {

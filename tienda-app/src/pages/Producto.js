@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { CartContext } from '../Context/CartContext'
+import { CartContext } from '../components/Context/CartContext'
 import { useParams } from 'react-router-dom'
-import Loading from '../Loading.js'
-import { getFirestore } from '../../firebase'
-import Contador from '../Contador/Contador'
-import Button from '../Contador/Button'
+import Loading from '../components/Loading.js'
+import { getFirestore } from '../firebase'
+import Contador from '../components/Contador/Contador'
+import Button from '../components/Contador/Button'
 
-function Item() {
+function Producto() {
 	// state = (idle|loading|error|show)
 	const [state, setState] = useState('idle')
 	const [itemCounter, setItemCounter] = useState(1)
@@ -105,4 +105,4 @@ function Item() {
 		</div>
 	)
 }
-export default Item
+export default Producto

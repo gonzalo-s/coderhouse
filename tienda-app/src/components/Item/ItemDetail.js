@@ -48,10 +48,10 @@ function ItemDetail({ item, itemId, itemTitle, itemThumbnail, min, max }) {
 					alt={itemTitle}
 				/>
 				<h6>Precio: {item.price}</h6>
-				<div className={'stock'}>
-					stock: {item.stock - cantidadEnCarrito(itemId)}
-				</div>
 			</NavLink>
+			<div className={'stock'}>
+				stock: {item.stock - cantidadEnCarrito(itemId)}
+			</div>
 
 			{max > 0 ? (
 				<div>
