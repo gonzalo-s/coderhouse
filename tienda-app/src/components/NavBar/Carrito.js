@@ -21,7 +21,6 @@ function Carrito() {
 		items: carrito,
 		date: firebase.firestore.Timestamp.fromDate(new Date()),
 		total: totalValue,
-		buyer: user,
 	}
 	function addNewOrder() {
 		orders
